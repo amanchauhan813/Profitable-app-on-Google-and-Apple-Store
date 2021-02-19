@@ -13,24 +13,33 @@ The dataset used for this analysis are listed below:
 
 
 ```python
-#opening AppleStore dataset
-from csv import reader
-opened_file = open('AppleStore.csv')
-read_file = reader(opened_file)
-appstore = list(read_file)
-appstore_header = appstore[0]
-appstore = appstore[1:]
+#function for read .csv file and convert into list
+def data_set(datas):
+    from csv import reader
+    opened_file=open(datas,errors="ignore")
+    read_file=reader(opened_file)
+    apps_list=list(read_file)
+    apps_data=apps_list[1:]
+    header=apps_list[0]
+    return apps_data,header
+    
+android,header_0=data_set(datas='googleplaystore.csv')
+ios,header_1=data_set(datas='AppleStore.csv')
+
 ```
 
 
 ```python
-#opening Google Play dataset
-from csv import reader
-opened_file = open('googleplaystore.csv')
-read_file = reader(opened_file)
-googleplay = list(read_file)
-googleplay_header = googleplay[0]
-googleplay = googleplay[1:]
+def explore_data(dataset,start,end,rows_and_columns=False):
+    dataset_slice=dataset[start:end]
+    for row in dataset_slice:
+        print(row)
+        print('\n')
+    if rows_and_columns:
+        print("Number of rows:",len(dataset))
+        print("Number of columns:",len(dataset[0]))
+        
+
 ```
 
 
